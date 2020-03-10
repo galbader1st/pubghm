@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+ #sound_effect {
+  position: absolute;
+  width: 300px;
+  height: 100px;
+  left: 50px;
+  top: 300px;
+  display: block;
+  background: 
+  blue;
+}
