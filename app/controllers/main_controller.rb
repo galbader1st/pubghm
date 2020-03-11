@@ -1,3 +1,4 @@
+# encoding: utf-8
 class MainController < ApplicationController
   require "dropbox_sdk"
 
@@ -17,14 +18,12 @@ class MainController < ApplicationController
         @divs << { date: 'unknown', name: result.name || 'none', path: result.name }
       end
     end
-    # @url = client.get_temporary_link(@results.entries.first.path_lower).link
-    # create_shared_link_with_settings
-    # byebug
-    # render json: results
   end
 
   def show
     @wav_urls = []
+    @jpg_url = nil
+    @txt = ''
     client = DropboxApi::Client.new(ENV['DROPBOX_RUBY_SDK_ACCESS_TOKEN'])
     results = client.list_folder("/recordings/" + params[:path])
     results.entries.each do |result|
@@ -32,6 +31,14 @@ class MainController < ApplicationController
       case type
       when 'wav'
         @wav_urls << { name: result.name, url: client.get_temporary_link(result.path_lower).link }
+      when 'jpg'
+        @jpg_url = client.get_temporary_link(result.path_lower).link
+      when 'txt'
+        client.download(result.path_lower) do |chunk|
+          @txt << chunk
+        end
+        @txt.force_encoding('ASCII-8BIT').force_encoding('UTF-8')
+        #byebug
       end
       #byebug
     end
