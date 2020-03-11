@@ -8,7 +8,7 @@ class MainController < ApplicationController
     client = DropboxApi::Client.new(ENV['DROPBOX_RUBY_SDK_ACCESS_TOKEN'])
     results = client.list_folder("/recordings")
     # byebug
-    results.entries.sort_by(&:name).each do |result|
+    results.entries.sort_by(&:name).reverse.each do |result|
       name_split = result.name.split(' ', 2)
       if name_split[0].scan(/\D/).empty? && name_split[0].size == 8
         date = Date.strptime(name_split[0], '%Y%m%d').strftime('%d/%m/%Y')
