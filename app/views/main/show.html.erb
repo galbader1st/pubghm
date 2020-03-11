@@ -1,10 +1,10 @@
 
 <h1>PUB-GHM Recordings</h1>
 <div>
-<% if !@txt.empty? %>
+<% if !@txt.blank? %>
 <div style="width:100%"><pre style="font-size: 24px" dir="rtl"><%= @txt %></pre></div>
 <% end %>
-<% if !@jpg_url.empty? %>
+<% if !@jpg_url.blank? %>
 <div><img src=<%= @jpg_url %>></div>
 <% end %>
 <% @wav_urls.each do |wav_url| %>
