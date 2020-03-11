@@ -1,7 +1,14 @@
-<h1>Hiiiii11</h1>
-<% @results.entries.each do |result| %>
-<%= result.name %>
-<audio id="sound_effect" class="audio_player" preload="auto" controls>
+<h1>PUB-GHM Recordings</h1>
+<ol>
+<% @divs.each do |div| %>
+<li>
+<div>
+<a><%= 'Date: ' + div[:date] %></a>
+<%= link_to('Name: ' + div[:name], 'main/' + div[:path]) %>
+</div>
+</li>
+<!--<audio id="sound_effect" class="audio_player" preload="auto" controls>
     <source src=<%= @url%> type="audio/wav">
-</audio>
+</audio>-->
 <% end %>
+</ol>

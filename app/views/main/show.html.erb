@@ -1,0 +1,11 @@
+<h1>PUB-GHM Recordings</h1>
+<div>
+<% @wav_urls.each do |wav_url| %>
+<div>
+<audio title=<%= wav_url[:name] %> preload="auto" controls>
+    <source title=<%= wav_url[:name] %> src=<%= wav_url[:url] %> type="audio/wav">
+</audio>
+<a><%= wav_url[:name] %></a>
+</div>
+<% end %>
+</div>
