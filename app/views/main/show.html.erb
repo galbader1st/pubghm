@@ -2,17 +2,17 @@
 <h1>PUB-GHM Recordings</h1>
 <div>
 <% if !@txt.blank? %>
-<div style="width:100%"><pre style="font-size: 24px" dir="rtl"><%= @txt %></pre></div>
+<div style="width:100%"><pre style="font-size: 24px;width:100%" dir="rtl"><%= @txt %></pre></div>
 <% end %>
 <% if !@jpg_url.blank? %>
-<div><img src=<%= @jpg_url %>></div>
+<div style="width:100%"><img  style="width:100%" src=<%= @jpg_url %>></div>
 <% end %>
 <% @wav_urls.each do |wav_url| %>
 <div style="width:100%">
-<audio preload="auto" controls volume="1.0">
+<div style="width:100%"><a style="font-size: 24px;width:100%"><%= wav_url[:name].sub!('.wav', '') %></a></div>
+<div style="width:100%"><audio style="width:100%" preload="auto" controls volume="1.0">
     <source src=<%= wav_url[:url] %> type="audio/wav" volume="1.0">
-</audio>
-<a><%= wav_url[:name] %></a>
+</audio></div>
 </div>
 <% end %>
 </div>
