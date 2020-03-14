@@ -19,10 +19,8 @@ $(document).ready(function(){
 		jPlayer: "#jquery_jplayer_1",
 		cssSelectorAncestor: "#jp_container_1"
   }, 
-  [<% @playlist.each do |pl| %>
-  { title: "<%= pl[:title] %>", wav: "<%= pl[:wav] %>" },
-  <% end %>{}]
-  , {
+  <%= raw @playlist.to_json %>,
+  {
 		swfPath: "../../dist/jplayer",
 		supplied: "wav",
 		wmode: "window",

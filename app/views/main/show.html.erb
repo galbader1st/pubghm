@@ -7,16 +7,8 @@
 <% if !@jpg_url.blank? %>
 <div style="width:100%"><img  style="width:100%" src=<%= @jpg_url %>></div>
 <% end %>
-<% @wav_urls.each do |wav_url| %>
+</div>
 <div style="width:100%">
-<div style="width:100%"><a style="font-size: 24px;width:100%"><%= wav_url[:name].sub!('.wav', '') %></a></div>
-<div style="width:100%"><audio style="width:100%" preload="auto" controls volume="1.0">
-    <source src=<%= wav_url[:url] %> type="audio/wav" volume="1.0">
-</audio></div>
-</div>
-<% end %>
-</div>
-<div>
 <div id="jquery_jplayer_1" class="jp-jplayer"></div>
 <div id="jp_container_1" class="jp-audio" role="application" aria-label="media player">
 	<div class="jp-type-playlist">
@@ -55,7 +47,7 @@
 		</div>
 		<div class="jp-no-solution">
 			<span>Update Required</span>
-			To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+			To play the media you will need to update your browser to a recent version.
 		</div>
 	</div>
 </div>

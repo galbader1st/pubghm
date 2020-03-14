@@ -59,5 +59,3 @@ gem 'dotenv-rails'
 gem 'dropbox_api'
 gem 'awesome_print'
 gem 'jquery-rails'
-# gem 'katapult', :git => 'git://github.com/makandra/katapult'
-gem "webpacker"
