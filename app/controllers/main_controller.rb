@@ -2,6 +2,8 @@
 class MainController < ApplicationController
   require "dropbox_sdk"
 
+  layout "main_show", only: [:show]
+
   def index
     # byebug
     @divs = []
@@ -22,6 +24,7 @@ class MainController < ApplicationController
 
   def show
     @wav_urls = []
+    @playlist = []
     @jpg_url = nil
     @txt = ''
     client = DropboxApi::Client.new(ENV['DROPBOX_RUBY_SDK_ACCESS_TOKEN'])
@@ -31,6 +34,7 @@ class MainController < ApplicationController
       case type
       when 'wav'
         @wav_urls << { name: result.name, url: client.get_temporary_link(result.path_lower).link }
+        @playlist << { title: result.name.sub!('.wav', ''), wav: client.get_temporary_link(result.path_lower).link }
       when 'jpg'
         @jpg_url = client.get_temporary_link(result.path_lower).link
       when 'txt'

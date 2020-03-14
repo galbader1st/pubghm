@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pubghm</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'jplayer.blue.monday.min', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jplayer.playlist.min', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'jquery.jplayer.min', 'data-turbolinks-track': 'reload' %>
+  
+  <script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+
+	new jPlayerPlaylist({
+		jPlayer: "#jquery_jplayer_1",
+		cssSelectorAncestor: "#jp_container_1"
+  }, 
+  [<% @playlist.each do |pl| %>
+  { title: "<%= pl[:title] %>", wav: "<%= pl[:wav] %>" },
+  <% end %>{}]
+  , {
+		swfPath: "../../dist/jplayer",
+		supplied: "wav",
+		wmode: "window",
+		useStateClassSkin: true,
+		autoBlur: false,
+		smoothPlayBar: true,
+		keyEnabled: true
+	});
+});
+//]]>
+</script>
+</head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
