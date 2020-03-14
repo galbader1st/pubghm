@@ -1,5 +1,8 @@
 {
   "name": "pubghm",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "engines": {
+    "yarn": "1.21.1"
+  }
 }
