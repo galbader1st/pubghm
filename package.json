@@ -1,8 +1,13 @@
 {
   "name": "pubghm",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@rails/webpacker": "3.5"
+  },
   "engines": {
-    "yarn": "1.16.0"
+    "yarn": "1.21.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
   }
 }
