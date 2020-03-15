@@ -524,7 +524,7 @@ span.jp-artist {
 
 .jp-audio .jp-type-playlist .jp-toggles {
   margin-left: 10%;
-  position: relative;
+  position: absolute;
   zoom: 3;
 }
 
