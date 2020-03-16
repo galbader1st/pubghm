@@ -1,13 +1,8 @@
 <h1>PUB-GHM Recordings</h1>
 <div style = "margin: 15px">
-<ul style="width:100%">
 <% @divs.each do |div| %>
-<li style="width:100%">
 <div style="width:100%">
-<a style="font-size: 24px;width:100%"><%= 'Date: ' + div[:date] %></a>
-<%= link_to('Name: ' + div[:name], 'main/' + div[:path], style: "font-size: 24px;width:100%") %>
+<%= link_to("#{div[:date]} - #{div[:name]}", 'main/' + div[:path], style: "font-size: 24px;width:100%") %>
 </div>
-</li>
 <% end %>
-</ul>
 </div>
