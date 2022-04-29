@@ -20,6 +20,10 @@ class MainController < ApplicationController
         @divs << { date: 'unknown', name: result.name || 'none', path: result.name }
       end
     end
+    respond_to do |format|
+      format.html  # index.html.erb
+      format.json  { render json: @divs }
+    end
   end
 
   def show
@@ -28,7 +32,7 @@ class MainController < ApplicationController
     @jpg_url = nil
     @txt = ''
     client = DropboxApi::Client.new(ENV['DROPBOX_RUBY_SDK_ACCESS_TOKEN'])
-    results = client.list_folder("/recordings/" + params[:path])
+    results = client.list_folder("/recordings/" + params[:path].gsub('.json', ''))
     results.entries.each do |result|
       type = result.name.split('.').last&.downcase
       case type
@@ -45,6 +49,10 @@ class MainController < ApplicationController
         #byebug
       end
       #byebug
+    end
+    respond_to do |format|
+      format.html  # index.html.erb
+      format.json { render json: { wavs: @wav_urls, playlist: @playlist, jpg: @jpg_url, text: @txt } }
     end
   end
 end
