@@ -88,10 +88,9 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.6.3)
     jwt (2.5.0)
-    listen (3.1.5)
+    listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -165,7 +164,6 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     ruby2_keywords (0.0.5)
-    ruby_dep (1.5.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -235,7 +233,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.7.7p221
+   ruby 3.1.3p185
 
 BUNDLED WITH
-   2.1.4
+   2.3.26
