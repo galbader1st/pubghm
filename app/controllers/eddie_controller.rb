@@ -3,7 +3,7 @@ class EddieController < ApplicationController
   before_action :load_paths
 
   def index
-    messages = JSON.parse(File.read(@conversation_path), symbolize_names: true)
+    messages = Message.order(:created_at).map(&:as_openai_format)
 
     respond_to do |format|
       format.html
@@ -15,23 +15,18 @@ class EddieController < ApplicationController
 
   def create
     user_input = params[:message]
+    Message.create!(role: 'user', content: user_input)
 
     # Load system and history
     system_prompt = File.read(@system_path)
-    messages = JSON.parse(File.read(@conversation_path), symbolize_names: true)
-
-    # Append user message
-    messages << { role: "user", content: user_input }
+    messages = Message.order(:created_at).map(&:as_openai_format)
 
     # Send to OpenAI
     response = OpenAiHelper.call_openai(system_prompt, messages)
 
     # Append assistant reply
     assistant_message = { role: "assistant", content: response }
-    messages << assistant_message
-
-    # Save updated conversation
-    File.write(@conversation_path, JSON.pretty_generate(messages))
+    Message.create!(role: 'assistant', content: response)
 
     render json: assistant_message
   end
