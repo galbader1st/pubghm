@@ -99,7 +99,7 @@
 <script>
   $(document).ready(function () {
     // Load existing messages
-    $.get("/eddie.json", function (data) {
+    $.get("/eddie.json?api_token=" + getUrlParam('api_token'), function (data) {
       data.messages.forEach(function (msg) {
         appendMessage(msg.role, msg.content);
       });
@@ -124,6 +124,10 @@
         url: "/eddie",
         contentType: "application/json",
         data: JSON.stringify({ message: content }),
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          'api_token': getUrlParam('api_token')
+        },
         success: function (data) {
           appendMessage("assistant", data.content);
         },
@@ -133,6 +137,11 @@
       });
       $("#user-input").css('height', 'auto')
     });
+
+    function getUrlParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
 
     function appendMessage(role, content) {
       const name = role === "assistant" ? "Eddie" : "Joon";

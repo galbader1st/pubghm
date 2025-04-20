@@ -1,8 +1,10 @@
 class EddieController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
   before_action :load_paths
 
   def index
+    return head :not_found unless params['api_token'] == 'Tootim123'
+    
     messages = Message.order(:created_at).map(&:as_openai_format)
 
     respond_to do |format|
@@ -14,6 +16,8 @@ class EddieController < ApplicationController
   end
 
   def create
+    return head :not_found unless params['api_token'] == 'Tootim123'
+
     user_input = params[:message]
     Message.create!(role: 'user', content: user_input)
 
